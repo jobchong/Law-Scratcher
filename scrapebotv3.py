@@ -4,7 +4,7 @@
 
 username = raw_input("Username here: ")
 password = raw_input("Password here: ")
-searchTerm = raw_input("What do you want to search for?")
+searchTerm = raw_input("What do you want to search for? ")
 specified_resources = [1,2] #1 = "Judgments", 2 = "Singapore Law Reports"
 
 #doing imports for making requests and parsing
@@ -220,7 +220,6 @@ try:
         
         for documenturl in listofDocumentUrls:
             s = session.get(documenturl, headers=headers)
-            
             bsObj = BeautifulSoup(s.content, 'html.parser')
             nameofcase = bsObj.find('span', {'class': 'caseTitle'}).get_text()
             slr_citation = bsObj.findAll('span', {'class': 'Citation offhyperlink'})

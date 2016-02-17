@@ -23,7 +23,9 @@ def step (ext, dirname, names):
             currentCase = open(os.path.join(dirname, name)).read()
             soup = BeautifulSoup(currentCase, "html.parser")
             facts = soup.find_all("p", searchTerm)
-            print facts
+            file = open("Output.txt", "w")
+            file.write(str(facts))
+            file.close()
 
             
 os.path.walk(topdir, step, exten)

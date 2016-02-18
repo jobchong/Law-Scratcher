@@ -227,7 +227,7 @@ try:
             neutralcitationofcase = bsObj.findAll('a', {'class': 'pagecontent'})
             if neutralcitationofcase != []: neutralcitationofcase = neutralcitationofcase[0].get_text()
             combinednameofcase = (nameofcase + slr_citation + neutralcitationofcase).encode("utf-8")
-            save_object(s.content, (combinednameofcase + ".html"))
+            save_object(bsObj.prettify(formatter=None), (combinednameofcase + ".html"))
            
             print "saved case: {}".format(combinednameofcase)
             

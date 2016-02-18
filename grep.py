@@ -22,9 +22,9 @@ def step (ext, dirname, names):
         if name.lower().endswith(ext):
             currentCase = open(os.path.join(dirname, name)).read()
             soup = BeautifulSoup(currentCase, "html.parser")
-            facts = soup.find_all("p", searchTerm)
+            facts = soup.find_all("p", class_ = searchTerm)
             file = open("Output.txt", "w")
-            file.write(str(facts))
+            file.write(unicode(facts))
             file.close()
 
             

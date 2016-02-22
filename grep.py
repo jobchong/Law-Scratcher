@@ -20,12 +20,10 @@ def step (ext, dirname, names):
 
     for name in names:
         if name.lower().endswith(ext):
-            currentCase = open(os.path.join(dirname, name)).read()
-            soup = BeautifulSoup(currentCase, "html.parser")
-            facts = soup.find_all("p", class_ = searchTerm)
-            file = open("Output.txt", "w")
-            file.write(unicode(facts))
-            file.close()
-
-            
+            with open(os.path.join(dirname, name)) as currentCase:
+                soup = BeautifulSoup(currentCase, "html.parser")
+                facts = soup.find_all("p", class_ = searchTerm)
+                f = open("Output.txt", "w")
+                f.write(str(facts))
+                
 os.path.walk(topdir, step, exten)

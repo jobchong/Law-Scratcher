@@ -1,11 +1,5 @@
-import re
-import os.path
-import string
 from bs4 import BeautifulSoup
 from os import listdir
-
-topdir = "."
-exten = ".html"
 
 print """
 For fact paragraphs, type HN-Facts.

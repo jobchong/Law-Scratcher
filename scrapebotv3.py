@@ -3,7 +3,7 @@
 #provide your user inputs:
 
 username = raw_input("Username here: ")
-password = raw_input("Password here: ")
+password = raw_input ("Password here: ")
 searchTerm = raw_input("What do you want to search for? ")
 specified_resources = [1,2] #1 = "Judgments", 2 = "Singapore Law Reports"
 
@@ -221,12 +221,10 @@ try:
         for documenturl in listofDocumentUrls:
             s = session.get(documenturl, headers=headers)
             bsObj = BeautifulSoup(s.content, 'html.parser')
-            nameofcase = bsObj.find('span', {'class': 'caseTitle'}).get_text()
-            slr_citation = bsObj.findAll('span', {'class': 'Citation offhyperlink'})
-            if slr_citation != []: slr_citation = slr_citation[0].get_text() #because there may not be any slr citation
-            neutralcitationofcase = bsObj.findAll('a', {'class': 'pagecontent'})
-            if neutralcitationofcase != []: neutralcitationofcase = neutralcitationofcase[0].get_text()
-            combinednameofcase = (nameofcase + slr_citation + neutralcitationofcase).encode("utf-8")
+            nameofcase = bsObj.find('span', class_ = "caseTitle").get_text()
+            if bsObj.find('span', class_ = 'Citation offhyperlink'):
+                citation = bsObj.find('span', class_ = 'Citation offhyperlink').get_text()
+            combinednameofcase = (nameofcase + citation)
             save_object(s.content, (combinednameofcase + ".html"))
             
            

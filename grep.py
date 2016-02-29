@@ -17,6 +17,10 @@ with open("/Users/jobchong/git/scrapelawnet/Output.txt", "w") as f:
         if filename.endswith(".html"):
             with open("/Users/jobchong/git/scrapelawnet/" + filename) as currentCase:
                 soup = BeautifulSoup(currentCase, "html.parser")
-                facts = str(soup.find_all("p"))
-                if searchTerm in currentCase:
-                    f.write(facts)
+                paras = soup.find_all("p")
+                for para in paras:
+                    parastrip = para.get_text()
+                    for i in searchTerm:
+                        if i in parastrip:
+                            f.write(parastrip.encode("utf-8"))
+                            f.write("\n")

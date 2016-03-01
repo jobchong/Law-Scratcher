@@ -222,6 +222,11 @@ try:
             s = session.get(documenturl, headers=headers)
             bsObj = BeautifulSoup(s.content, 'html.parser')
             nameofcase = bsObj.find('span', class_ = "caseTitle").get_text()
+            
+            import string
+            for char in string.punctuation: #strip puntuation marks from case name
+                nameofcase = nameofcase.replace(char, " ")
+                
             if bsObj.find('span', class_ = 'Citation offhyperlink'):
                 citation = bsObj.find('span', class_ = 'Citation offhyperlink').get_text()
             combinednameofcase = (nameofcase + citation)

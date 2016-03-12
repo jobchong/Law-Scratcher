@@ -21,6 +21,7 @@ import pickle #to save files
 def save_object(obj, filename):
     with open(filename, 'wb') as output:
         pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
+    output.close
         
 #Handles the security certificate by lawnet. this part is to set the TLS certficate to v1.0. I found the solution at: http://stackoverflow.com/questions/14102416/python-requests-requests-exceptions-sslerror-errno-8-ssl-c504-eof-occurred
   

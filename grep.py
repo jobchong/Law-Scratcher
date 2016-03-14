@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from os import listdir
+import string as s
 
 # print """
 # For fact paragraphs, type HN-Facts.
@@ -9,18 +10,31 @@ from os import listdir
 
 # searchTerm = raw_input("Which paragraphs do you want to search for? ")
 
+#variables so we easier to make changes when working on different computers
+outputtext = "/Users/wuguowei/Google Drive/Year 4 Sem 2/Artificial Intelligence/scrapelawnet/casesTXT/"
+casefolder = "/Users/wuguowei/Google Drive/Year 4 Sem 2/Artificial Intelligence/scrapelawnet/140/"
 
-searchTerm = ["misappropriated", "appeal", "dedication", "contribution", "compassion", "first-time", "deterrence", "public institution", "substantial", "premeditated", "fine"]
+#counter (for rough work)
+n = 0 
+# searchTerm = ["misappropriated", "appeal", "dedication", "contribution", "compassion", "first-time", "deterrence", "public institution", "substantial", "premeditated", "fine"]
 
-with open("/Users/jobchong/git/scrapelawnet/Output.txt", "w") as f:
-    for filename in listdir("/Users/jobchong/git/scrapelawnet/"):
+#extracting main sentencing para
+# searchTerm = ["months imprisonment"]
+for filename in listdir(casefolder):
+    with open(s.strip(outputtext+str(n)+" "+filename,"html")+"txt", "w") as f:
+        n += 1
         if filename.endswith(".html"):
-            with open("/Users/jobchong/git/scrapelawnet/" + filename) as currentCase:
+            with open(casefolder + filename) as currentCase:
                 soup = BeautifulSoup(currentCase, "html.parser")
                 paras = soup.find_all("p")
                 for para in paras:
                     parastrip = para.get_text()
-                    for i in searchTerm:
-                        if i in parastrip:
-                            f.write(parastrip.encode("utf-8"))
-                            f.write("\n")
+                    f.write(parastrip.encode("utf-8")), f.write("\n")
+#                     for i in searchTerm:
+#                         if i in parastrip:
+#                             f.write(str(n)), f.write(searchTerm) f.write("\n")
+#                             f.write(filename) , f.write("\n")
+#                             f.write(parastrip.encode("utf-8")), f.write("\n")
+#                             #n += 1
+
+                            

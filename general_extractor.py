@@ -15,7 +15,7 @@ with open(datafolder+"/data_court.txt", "w") as f:                              
                 lines = currentCase.readlines()
                 courtdata = string.strip(string.lstrip(lines[4],"Tribunal/Court:" + "Tribunal/Court : "))
                 if courtdata == "High Court":
-                    result = "hH"
+                    result = "H"
                 elif courtdata == "District Court": 
                     result = "D"
                 else:

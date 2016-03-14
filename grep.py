@@ -21,8 +21,7 @@ n = 0
 #extracting main sentencing para
 # searchTerm = ["months imprisonment"]
 for filename in listdir(casefolder):
-    with open(string.strip(outputtext+filename+" "+str(n),"html")+"txt", "w") as f:   #filenumber after filename because sort in extractor is a pain
-        
+    with open(string.strip(outputtext+filename,".html")+" "+str(n)+".txt", "w") as f:   ##filenumber after filename because sort in extractor is a pain
         n += 1
         if filename.endswith(".html"):
             with open(casefolder + filename) as currentCase:

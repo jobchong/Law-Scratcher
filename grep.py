@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from os import listdir
-import string as s
+import string
 
 # print """
 # For fact paragraphs, type HN-Facts.
@@ -21,7 +21,7 @@ n = 0
 #extracting main sentencing para
 # searchTerm = ["months imprisonment"]
 for filename in listdir(casefolder):
-    with open(s.strip(outputtext+str(n)+" "+filename,"html")+"txt", "w") as f:
+    with open(string.strip(outputtext+str(n)+" "+filename,"html")+"txt", "w") as f:
         n += 1
         if filename.endswith(".html"):
             with open(casefolder + filename) as currentCase:

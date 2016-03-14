@@ -26,7 +26,9 @@ for filename in listdir(casefolder):
         if filename.endswith(".html"):
             with open(casefolder + filename) as currentCase:
                 soup = BeautifulSoup(currentCase, "html.parser")
-                paras = soup.find_all("p")
+                paras = soup.find_all("title")
+                paras += soup.find_all("tr")  #to retrieve the headings and titles
+                paras += soup.find_all("p")
                 for para in paras:
                     parastrip = para.get_text()
                     f.write(parastrip.encode("utf-8")), f.write("\n")
